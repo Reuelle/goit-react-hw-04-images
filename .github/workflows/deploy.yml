@@ -1,5 +1,4 @@
-
-   name: Deploy to GitHub Pages
+name: Deploy to GitHub Pages
 on:
   push:
     branches:
@@ -23,4 +22,3 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
           BRANCH: gh-pages
           FOLDER: build
-
