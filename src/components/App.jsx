@@ -18,7 +18,7 @@ const App = () => {
     <div className={styles.App}>
       <SearchBar onSubmit={handleSearchSubmit} />
       <ImageGallery images={images} />
-      {isLoading && <Loader />}
+      {isLoading && <Loader />} {/* Conditional rendering of Loader */}
       {!isLoading && !isError && images.length > 0 && !isEnd && (
         <Button onClick={handleLoadMore} />
       )}

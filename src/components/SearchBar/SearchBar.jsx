@@ -12,7 +12,7 @@ const SearchBar = ({ onSubmit }) => {
   const handleSubmit = event => {
     event.preventDefault();
     onSubmit(query);
-    setQuery('');
+    setQuery(''); // Clear input after submission if needed
   };
 
   return (
@@ -27,7 +27,6 @@ const SearchBar = ({ onSubmit }) => {
           autoComplete="off"
           autoFocus
           placeholder="Search images and photos"
-          value={query}
           onChange={handleChange}
         />
       </form>
