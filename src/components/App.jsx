@@ -1,16 +1,31 @@
-export const App = () => {
+import React from 'react';
+import SearchBar from './SearchBar/SearchBar';
+import ImageGallery from './ImageGallery/ImageGallery';
+import Button from './Button/Button';
+import Loader from './Loader/Loader';
+import styles from './App.module.css';
+import { Toaster } from 'react-hot-toast';
+import { useImages } from 'context/ImagesContext';
+import { useSearchQuery } from 'context/SearchQueryContext';
+import { usePagination } from 'context/PaginationContext';
+
+const App = () => {
+  const { images, isLoading, isError } = useImages();
+  const { handleSearchSubmit } = useSearchQuery();
+  const { handleLoadMore, isEnd } = usePagination();
+
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template-Image finder
+    <div className={styles.App}>
+      <SearchBar onSubmit={handleSearchSubmit} />
+      <ImageGallery images={images} />
+      {isLoading && <Loader />}
+      {!isLoading && !isError && images.length > 0 && !isEnd && (
+        <Button onClick={handleLoadMore} />
+      )}
+      {isError && <p>Something went wrong. Please try again later.</p>}
+      <Toaster position="top-right" reverseOrder={false} />
     </div>
   );
 };
+
+export default App;
